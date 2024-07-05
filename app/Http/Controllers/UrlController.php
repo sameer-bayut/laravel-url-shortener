@@ -26,9 +26,7 @@ class UrlController extends Controller
             'shortened_url' => $shortenedUrl,
         ]);
 
-        return response()->json([
-            'shortUrl' => env('APP_URL') . "/r/$shortenedUrl",
-        ]);
+        return view('url', ['shortenedUrl' => $shortenedUrl]);
     }
 
     public function reroute($shortUrl){
