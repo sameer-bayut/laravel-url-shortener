@@ -9,6 +9,6 @@ class Url extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['original_url', 'shortened_url'];
+    protected $fillable = ['original_url', 'shortened_url', 'last_visited_at'];
 
 }

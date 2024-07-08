@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Url;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Symfony\Component\HttpFoundation\Exception\BadRequestException;
+
 
 class UrlController extends Controller
 {
@@ -31,6 +31,9 @@ class UrlController extends Controller
 
     public function reroute($shortUrl){
         $url = Url::where('shortened_url', $shortUrl)->firstOrFail();
+        $url->update(['last_visited_at' => now()]);
+
+        error_log(now());
 
         return redirect($url->original_url);
     }

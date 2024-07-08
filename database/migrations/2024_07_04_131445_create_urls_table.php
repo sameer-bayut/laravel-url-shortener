@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('original_url');
             $table->string('shortened_url');
+            $table->timestamp('last_visited_at')->nullable();
             $table->timestamps();
         });
     }
