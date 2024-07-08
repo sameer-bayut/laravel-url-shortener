@@ -8,4 +8,4 @@ Route::get('/', function () {
 });
 
 Route::post('/shorten', [UrlController::class, 'shorten']);
-Route::get('/r', [UrlController::class, 'reroute']);
+Route::get('/r/{shortUrl}', [UrlController::class, 'reroute']);

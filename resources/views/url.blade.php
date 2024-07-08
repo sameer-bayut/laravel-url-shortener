@@ -8,9 +8,12 @@
     </head>
     <body class="body">
         <div class="container">
-            <div>
+            <div style="color: white">
                 <h1>Here's your shortened URL</h1>
-                <a href="{{ $shortenedUrl }}">{{ $shortenedUrl }}</a>
+                {{-- <a href="{{ $shortenedUrl }}">{{ $shortenedUrl }}</a> --}}
+                <div class="copyContainer">
+                    <a href="{{ $shortenedUrl }}">{{ $shortenedUrl }}</a>
+                </div>
             </div>
         </div>
     </body>

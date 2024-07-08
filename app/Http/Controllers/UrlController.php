@@ -18,7 +18,7 @@ class UrlController extends Controller
         $urlExists = Url::firstWhere('original_url', $request->get('original_url'));
 
         if(isset($urlExists)){
-            throw new BadRequestException('Link already exists');
+            return view('400');
         }
 
         Url::create([
@@ -26,7 +26,7 @@ class UrlController extends Controller
             'shortened_url' => $shortenedUrl,
         ]);
 
-        return view('url', ['shortenedUrl' => $shortenedUrl]);
+        return view('url', ['shortenedUrl' => "http://localhost:8000" . "/r/$shortenedUrl"]);
     }
 
     public function reroute($shortUrl){

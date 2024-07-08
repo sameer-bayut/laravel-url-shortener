@@ -8,6 +8,12 @@
     </head>
     <body class="body">
         <div class="container">
+        <div>
+            <h1>Laravel URL Shortener</h1>
+            <h3>Yet another useless url shortener....</h3>
+        </div>
+        </div>
+        <div class="container">
             <form class="inputContainer" action="/shorten" method="POST">
                 @csrf
                 <input
