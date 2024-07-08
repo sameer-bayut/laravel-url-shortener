@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Url;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Symfony\Component\HttpFoundation\Exception\BadRequestException;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class UrlController extends Controller
 {
@@ -18,7 +18,7 @@ class UrlController extends Controller
         $urlExists = Url::firstWhere('original_url', $request->get('original_url'));
 
         if(isset($urlExists)){
-            throw new BadRequestException('Link already exists');
+            return view('400');
         }
 
         Url::create([
@@ -26,13 +26,19 @@ class UrlController extends Controller
             'shortened_url' => $shortenedUrl,
         ]);
 
-        return response()->json([
-            'shortUrl' => env('APP_URL') . "/r/$shortenedUrl",
-        ]);
+        return view('url', ['shortenedUrl' => "http://localhost:8000" . "/r/$shortenedUrl"]);
     }
 
     public function reroute($shortUrl){
         $url = Url::where('shortened_url', $shortUrl)->firstOrFail();
+
+        if(!isset($url)){
+            throw new BadRequestHttpException('Invalid Url');
+        }
+
+        $url->update(['last_visited_at' => now()]);
+
+        error_log(now());
 
         return redirect($url->original_url);
     }
