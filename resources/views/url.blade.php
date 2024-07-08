@@ -10,7 +10,6 @@
         <div class="container">
             <div style="color: white">
                 <h1>Here's your shortened URL</h1>
-                {{-- <a href="{{ $shortenedUrl }}">{{ $shortenedUrl }}</a> --}}
                 <div class="copyContainer">
                     <a href="{{ $shortenedUrl }}">{{ $shortenedUrl }}</a>
                 </div>

@@ -26,7 +26,7 @@ class UrlController extends Controller
             'shortened_url' => $shortenedUrl,
         ]);
 
-        return view('url', ['shortenedUrl' => "http://localhost:8000" . "/r/$shortenedUrl"]);
+        return view('url', ['shortenedUrl' => env('APP_URL') . "/r/$shortenedUrl"]);
     }
 
     public function reroute($shortUrl){
